@@ -267,7 +267,7 @@ We measured weight gain in chickens before and after a diet.
 ```{r}
 #| code-fold: true
 
-weight <- c(2.5, 3.5, 3, 2.9)
+weight <- c(2.5, 3.5, 3.5, 3.4)
 weight_after <- c(4, 5, 5, 4.6)
 
 df <- tibble(
@@ -317,6 +317,45 @@ In words:
 
 - $H_0$: There is no difference in weight gain before and after the diet.
 - $H_1$: There is an increase in weight gain after the diet.
+
+---
+
+Alternatively, since the data is paired, we may also consider hypotheses based on the differences between the two groups:
+
+$$H_0: \mu_D = 0$$
+$$H_1: \mu_D > 0$$
+
+where $D$ is the difference between the two groups.
+
+
+## Assumptions
+
+```{r}
+#| code-fold: true
+
+p1 <- ggplot(df, aes(x = weight_after - weight)) +
+  geom_histogram(bins = 10)
+p2 <- ggplot(df, aes(sample = weight_after - weight)) +
+  stat_qq() +
+  stat_qq_line()
+p3 <- ggplot(df, aes(x = "", y = weight_after - weight)) +
+  geom_boxplot()
+
+library(patchwork)
+p1 + p2 + p3
+```
+
+With so few data points, we may want to use a formal test to check for normality.
+
+## Assumptions
+
+```{r}
+#| code-fold: false
+
+shapiro.test(df$weight_after - df$weight)
+```
+
+Results indicate that the data significantly deviates from normality (W = 0.63, p < 0.05). We will use the Wilcoxon signed-rank test.
 
 ## Performing the test
 ### In R
