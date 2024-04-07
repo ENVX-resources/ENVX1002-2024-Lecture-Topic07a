@@ -153,17 +153,20 @@ If we perform $t$-tests on both data sets, we get the following results:
 :::: columns
 ::: column
 ```{r}
-t.test(response ~ group, data = df)
+fit <- t.test(response ~ group, data = df)
+fit
 ```
 
 Results indicate that there is a statistically significant difference between the two groups (t~18~ = -4.4, p < 0.05).
 :::
 ::: column
 ```{r}
-t.test(response ~ group, data = df_with_outlier)
+fit2 <- t.test(response ~ group, data = df_with_outlier)
+fit2
+
 ```
 
-Results indicate that the two groups are **not** significantly different (t~18~ = -2.1, p = 0.06).
+Results indicate that the two groups are **not** significantly different (t~18~ = -2.1, p = `{r} round(fit2$p.value, 2)`).
 :::
 ::::
 
