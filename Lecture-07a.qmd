@@ -16,6 +16,13 @@ library(gt)
 theme_set(theme_cowplot())
 ```
 
+# Evaluation task (Week 8)
+
+- Testing materials in weeks 2, 5 and 6 (excludes this week).
+- See this [Ed announcement](https://edstem.org/au/courses/14893/discussion/1861580) for all information.
+- **No GenAI**: we will check.
+- Practice before the test using the [Practice Assignment on Canvas](https://canvas.sydney.edu.au/courses/55713/assignments/498760)
+
 # Parametric vs non-parametric methods
 
 ## Overview
@@ -397,7 +404,7 @@ douglassi brevirostre*)
 Does the average smaller size class lizard eat about 100 beetles per day?
 
 $$H_0: \mu = 100$$
-$$H_1: \mu > 100$$
+$$H_1: \mu \neq 100$$
 
 ### Dataset [Download](data/beetle.csv)
 
@@ -433,9 +440,9 @@ The Wilcoxon signed-rank test for one sample can be performed as follows:
 #| code-fold: false
 
 beetle %>%
-  filter(SIZE == "small") %>%
-  pull(BEETLES) %>%
-  wilcox.test(mu = 100) # hypothesised mean
+  filter(SIZE == "small") %>%  # filter only the smaller size class
+  pull(BEETLES) %>%            # convert to a vector using pull()
+  wilcox.test(mu = 100)        # wilcox.text(x, mu)
               
 ```
 
@@ -458,9 +465,9 @@ Alternative to the **two-sample $t$-test**.
 
 ## About
 
-- A non-parametric test used to compare two independent samples similar to the two-sample $t$-test.
-- Like the Wilcoxon signed-rank test, it uses ranks to perform the test and does not assume normality. 
-- It is also more *relaxed* in that it does not assume symmetry in the distribution of the data.
+- A **non-parametric test** used to compare two independent samples similar to the two-sample $t$-test.
+- Like the Wilcoxon signed-rank test, it uses **ranks** to perform the test and does not assume normality. 
+- It is also more *relaxed* in that it does not assume symmetry in the distribution of the data -- instead, it assumes that the two groups have the same shape/distribution.
 
 # Example: Back to the lizards
 
