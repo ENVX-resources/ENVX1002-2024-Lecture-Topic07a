@@ -9,6 +9,9 @@ contributes:
       menu:
         side: left
       slide-number: true
+      toc: true
+      toc-title: Outline
+      toc-depth: 1
       date: last-modified
       date-format: "MMM YYYY"
       html-math-method: katex
