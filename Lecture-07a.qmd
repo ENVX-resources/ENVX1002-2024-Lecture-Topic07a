@@ -420,7 +420,9 @@ Alternative to the **two-sample $t$-test**.
 - Like the Wilcoxon signed-rank test, it uses ranks to perform the test and does not assume normality. 
 - It is also more *relaxed* in that it does not assume symmetry in the distribution of the data.
 
-## Back to the lizards
+# Example: Back to the lizards
+
+## Beetle consumption in lizards
 
 Researchers investigated differences in beetle consumption between two size classes of eastern horned lizard (*Phrynosoma douglassi brevirostre*) 
 
